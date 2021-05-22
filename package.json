@@ -1,0 +1,5 @@
+{
+  "name": "yarn2-plugin-apt",
+  "version": "0.0.1",
+  "description": "yarn 2 plugin to resolve node modules installed as debian packages via apt"
+}
