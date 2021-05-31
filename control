@@ -1,0 +1,22 @@
+Source: yarn2-plugin-apt 
+Section: Javascript
+Priority: optional
+Maintainer: Debian Javascript Maintainers <pkg-javascript-devel@lists.alioth.debian.org>
+Uploaders: 
+Build-Depends: 
+Rules-Requires-Root: no
+Standards-Version: 4.5.0
+Vcs-Git: https://salsa.debian.org/js-team/yarn2-plugin-apt.git
+Vcs-Browser: https://salsa.debian.org/js-team/yarn2-plugin-apt
+
+Package: yarn2-plugin-apt 
+Architecture: any
+Depends: 
+         ${misc:Depends},
+         ${perl:Depends},
+         ${shlibs:Depends}
+Description: Yarn 2 plugin to resolve modules installed via apt.
+ To have every free software available in easy to install form and easy to configure,
+ .
+ using just the default package manager, irrespective of which language/framework
+ it was written in (node, ruby, python, etc)
