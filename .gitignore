@@ -1,5 +1,4 @@
 .yarn/
-.yarnrc.yml
 #/.yarn/*
 #!/.yarn/releases
 #!/.yarn/plugins
