@@ -1,41 +1,22 @@
-import { writeFileSync } from "fs";
-import readdirp from "readdirp"
-
 module.exports = {
     name: `yarn2-plugin-apt`,
     factory: (require) => {       
          
 
-        const {Command, UsageError,} = require(`clipanion`);
-        const nodeDir = '/usr/share/nodejs';
-        const oldNodeDir = '/usr/lib/nodejs';
+        const {Command} = require(`clipanion`);
         class Ceck extends Command {
             async execute(){  
                 
-                const moduleDir = async (source: any) => {
-                    var paths: string[] = [];
-                    for await (const iterator of readdirp(source, {
-                        // fileFilter: ['*.js', 'index.js', '!*.test.js'],
-                        directoryFilter: ['!node_modules', '!types'],
-                        type: 'directories',
-                        depth: 1})) {
-                       paths.push((iterator.fullPath))                       
-                    }
-                    return paths;
-                   
-                } 
-                const nodeModule = await moduleDir(nodeDir);
-                const oldNodeModule = await moduleDir(oldNodeDir);
-                const allModules = [...nodeModule, ...oldNodeModule]
-                // const merged = [].concat.apply([], allModules);
-                
-                const regex = new RegExp(`\\b/${this.package}\\b`)
-                const matcch = allModules.filter(value => regex.test(value))
-                if (matcch.length > 0) {
-                        console.log(matcch);
-                } else {
-                    this.context.stdout.write(`Module is not installed\n`)
-                }
+                    
+                      const exec = require('child_process').exec;
+         
+                      const packagePath = exec(`bash scripts/nodePath.sh ${this.package}`);
+                       packagePath.stdout.on('data', (data)=>{
+                            this.context.stdout.write(data) 
+                      });
+                      packagePath.stderr.on('data', (data)=>{
+                        this.context.stderr.write(`${this.package} is not installed\n`);
+                    });
                 
               
             }
