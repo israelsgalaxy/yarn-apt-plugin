@@ -1,5 +1,5 @@
 module.exports = {
-    name: `yarn2-plugin-apt`,
+    name: `yarn-plugin-apt`,
     factory: (require) => {       
          
 
@@ -9,8 +9,9 @@ module.exports = {
                 
                     
                       const exec = require('child_process').exec;
+                      const path = require('path');
          
-                      const packagePath = exec(`bash scripts/nodePath.sh ${this.package}`);
+                      const packagePath = exec(`bash ${path.join(__dirname, "..", "scripts/nodePath.sh")} ${this.package}`);
                        packagePath.stdout.on('data', (data)=>{
                             this.context.stdout.write(data) 
                       });
