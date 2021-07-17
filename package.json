@@ -1,13 +1,15 @@
 {
-  "name": "yarn2-plugin-apt",
-  "main": "src/index.ts",
+  "name": "yarn-plugin-apt",
+  "main": "sources/index.ts",
   "version": "0.0.1",
   "description": "yarn 2 plugin to resolve node modules installed as debian packages via apt",
   "scripts": {
-    "build": "tsc -m commonjs --outDir lib"
+    "build:types": "tsc -m commonjs --outDir lib",
+    "build": "yarn build:types && builder build plugin"
   },
   "devDependencies": {
     "@types/node": "^15.12.5",
+    "@yarnpkg/builder": "^3.0.0-rc.9",
     "eslint": "^7.27.0",
     "prettier": "^2.3.0",
     "typescript": "4.1"
