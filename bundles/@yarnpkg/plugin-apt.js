@@ -3,8 +3,8 @@
 module.exports = {
 name: "@yarnpkg/plugin-apt",
 factory: function (require) {
-var plugin=(()=>{var i=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports);var o=i((l,c)=>{c.exports={name:"yarn-plugin-apt",factory:n=>{let{Command:e}=n("clipanion");class a extends e{async execute(){let t=n("child_process").exec(`nodepath ${this.package}`);t.stdout.on("data",s=>{this.context.stdout.write(s)}),t.stderr.on("data",s=>{this.context.stderr.write(`${this.package} is not installed
-`)})}}return a.addOption("package",e.String("--resolve")),a.addOption("package",e.String("-r")),a.addPath("dop-check"),a.usage=e.Usage({description:`
+var plugin=(()=>{var d=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports);var c=d((l,o)=>{o.exports={name:"yarn-plugin-apt",factory:t=>{let{Command:e}=t("clipanion");class a extends e{async execute(){let n=t("child_process").exec(`nodepath ${this.package}`);n.stdout.on("data",s=>{this.context.stdout.write(s)}),n.stderr.on("data",s=>{this.context.stderr.write(`${this.package} is not installed
+`)})}}return a.addOption("package",e.String("--resolve")),a.addOption("package",e.String("-r")),a.addPath("apt"),a.usage=e.Usage({description:`
             ------------------------------------------
 
             Yarn2 apt module resolve plugin for debian
@@ -12,17 +12,14 @@ var plugin=(()=>{var i=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports);v
             ------------------------------------------
 
             `,details:`
-            This command will check if a package is installed on your machine
+            The apt command check if a node module is installed via apt, 
 
-            The command "dop" = Debian Outreachy project, in appreciation of Debian
+            if true resolves and links the module as a project dependency
 
-            and Outreachy for sponsoring this plugin 
-
-
-            Special thanks to the Debian community js-team \u2764
-            `,examples:[[`Check if memfs is installed
-`,`yarn dop-check --resolve memfs
-`]]}),{commands:[a]}}}});return o();})();
+            for the nodejs project within which the command was ran.
+            `,examples:[[`Resolve memfs package
+`,`yarn apt --resolve memfs
+`]]}),{commands:[a]}}}});return c();})();
 return plugin;
 }
 };
