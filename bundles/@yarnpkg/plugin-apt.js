@@ -3,8 +3,8 @@
 module.exports = {
 name: "@yarnpkg/plugin-apt",
 factory: function (require) {
-var plugin=(()=>{var d=(e,a)=>()=>(a||e((a={exports:{}}).exports,a),a.exports);var p=d((l,i)=>{i.exports={name:"yarn-plugin-apt",factory:e=>{let{Command:a}=e("clipanion");class n extends a{async execute(){let o=e("child_process").exec,c=e("path"),t=o(`bash ${c.join(__dirname,"..","scripts/nodePath.sh")} ${this.package}`);t.stdout.on("data",s=>{this.context.stdout.write(s)}),t.stderr.on("data",s=>{this.context.stderr.write(`${this.package} is not installed
-`)})}}return n.addOption("package",a.String("--resolve")),n.addOption("package",a.String("-r")),n.addPath("dop-check"),n.usage=a.Usage({description:`
+var plugin=(()=>{var i=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports);var o=i((l,c)=>{c.exports={name:"yarn-plugin-apt",factory:n=>{let{Command:e}=n("clipanion");class a extends e{async execute(){let t=n("child_process").exec(`nodepath ${this.package}`);t.stdout.on("data",s=>{this.context.stdout.write(s)}),t.stderr.on("data",s=>{this.context.stderr.write(`${this.package} is not installed
+`)})}}return a.addOption("package",e.String("--resolve")),a.addOption("package",e.String("-r")),a.addPath("dop-check"),a.usage=e.Usage({description:`
             ------------------------------------------
 
             Yarn2 apt module resolve plugin for debian
@@ -22,7 +22,7 @@ var plugin=(()=>{var d=(e,a)=>()=>(a||e((a={exports:{}}).exports,a),a.exports);v
             Special thanks to the Debian community js-team \u2764
             `,examples:[[`Check if memfs is installed
 `,`yarn dop-check --resolve memfs
-`]]}),{commands:[n]}}}});return p();})();
+`]]}),{commands:[a]}}}});return o();})();
 return plugin;
 }
 };
