@@ -30,6 +30,14 @@ To install and use this plugin in a nodejs project:
 This plugin depends on the following packages, which are installable via apt on Debian and Debian-based distros:
 - pkg-js-tools
 
+## Usage
+This plugin provides a `yarn apt` command. To use this plugin, call `yarn apt` with the `--resolve` ( or `-r`) option and pass package to resolve as command argument.
+**Example:**
+    To resolve `mocha`
+    `yarn apt --resolve mocha`
+If mocha is installed in a Debian node path ( via apt), this resolves pulls it from the local files and links it as a dependency for your project using your specified nodeLinker.
+This command must be run in the root of the project you wish to resolve dependencies for.
+
 
 ## Acknowledgements
 
