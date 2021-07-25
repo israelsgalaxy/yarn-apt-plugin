@@ -11,6 +11,6 @@
     ]
   },
   "include": [
-    "sources/**/*.ts"
+    "src/**/*.ts"
   ]
 }
