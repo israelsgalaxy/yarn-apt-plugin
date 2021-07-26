@@ -7,7 +7,7 @@ Yarn 2 plugin to resolve node modules installed via apt. See https://wiki.debian
 - clone this repository
 - `cd yarn2-plugin-apt`
 - `yarnpkg set version berry` 
-- This command autogenerates a .yarnrc.yml file which should be listed in .gitignore, fill it with the following:
+- This command sets yarn version to berry and autogenerates a .yarnrc.yml file which should be listed in .gitignore, fill it with the following:
 <pre><code>
 nodeLinker: node-modules
 plugins:
