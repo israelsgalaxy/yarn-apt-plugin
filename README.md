@@ -14,6 +14,7 @@ plugins:
   - lib/index.js
 yarnPath: ".yarn/releases/yarn-berry.cjs" 
 </code></pre>
+- nodeLinker could be node-modules or pnp depending on the preferred option.
 - `yarnpkg install`
 - `yarnpkg build`
 - `yarnpkg apt --resolve/-r <package>`
@@ -25,23 +26,23 @@ To install and use this plugin in a nodejs project:
 #### 1.
     Your project has been configured to use yarn2
 - `cd` into the your project folder
-- `yarn plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
+- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
 #### 2.
     Your project has not been configured to use yarn2
 - `apt install yarnpkg`
 - `cd` into the project folder
 - `yarnpkg set version berry`
-- `yarn plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
+- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
 
 #### System Dependencies
 This plugin depends on the following packages, which are installable via apt on Debian and Debian-based distros:
 - pkg-js-tools
 
 ## Usage
-This plugin provides a `yarn apt` command. To use this plugin, call `yarn apt` with the `--resolve` ( or `-r`) option and pass package to resolve as command argument.<br/>
+This plugin provides a `yarnpkg apt` command. To use this plugin, call `yarnpkg apt` with the `--resolve` ( or `-r`) option and pass package to resolve as command argument.<br/>
 **Example:**<br/>
     To resolve `mocha`<br/>
-    `yarn apt --resolve mocha`<br/>
+    `yarnpkg apt --resolve mocha`<br/>
 If mocha is installed in a Debian node path ( via apt), this resolves pulls it from the local files and links it as a dependency for your project using your specified nodeLinker.<br/>
 This command must be run in the root of the project you wish to resolve dependencies for.
 
