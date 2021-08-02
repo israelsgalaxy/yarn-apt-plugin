@@ -1,6 +1,6 @@
 {
   "name": "@yarnpkg/plugin-apt",
-  "main": "./sources/index.ts",
+  "main": "./src/index.ts",
   "version": "1.0.0",
   "description": "yarn 2 plugin to resolve node modules installed as debian packages via apt",
   "dependencies": {
@@ -14,18 +14,18 @@
     "@yarnpkg/core": "^3.0.0-rc.9"
   },
   "devDependencies": {
+    "@types/is-windows": "^1.0.0",
     "@types/lodash": "^4.14.136",
     "@types/node": "^15.12.5",
     "@yarnpkg/builder": "^3.0.1",
     "@yarnpkg/cli": "^3.0.0-rc.9",
     "@yarnpkg/core": "^3.0.0-rc.9",
     "eslint": "^7.27.0",
-    "prettier": "^2.3.0",
-    "typescript": "4.1",
     "mocha": "^9.0.3",
     "mongoose": "5.13.5",
+    "prettier": "^2.3.0",
     "swr": "0.5.6",
-    "@types/is-windows": "^1.0.0"
+    "typescript": "4.1"
   },
   "scripts": {
     "build:types": "rm -rf lib && tsc -m commonjs --outDir lib",
