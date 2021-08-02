@@ -33,7 +33,7 @@ export default class AptCommand extends BaseCommand {
 
   
   localOnly = Option.Boolean(`-l,--local`, false, {
-    description: `Resolve if all found locally`,
+    description: `Resolve packages if all are found locally`,
   });
 
   async execute() {

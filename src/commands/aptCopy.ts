@@ -39,12 +39,12 @@ export default class AptCommand extends BaseCommand {
 
     const opts = !!this.packages || this.all;
     if(!opts)
-        throw new UsageError(`Cannot use "apt copy" command without an option. Run "yarn apt copy --help" for usage information`);
+        throw new UsageError(`"apt copy" command requires a option of the package to copy. Run "yarn apt copy --help" for usage information`);
     
     if(this.packages)
         console.log('packages to copy:', this.packages)
     
-    console.log('Implementation coming soon :)')
+    console.log('Implementation in development :)')
     return
   }
 
