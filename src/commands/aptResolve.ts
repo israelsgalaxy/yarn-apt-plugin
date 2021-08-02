@@ -21,7 +21,7 @@ export default class AptCommand extends BaseCommand {
     for the nodejs project within which the command was ran.
     `,
     examples: [[
-      `Resolves specified dependencies (mocha and jest) if all found\n
+      `Resolves specified dependencies (example, mocha and jest) if found\n
        in Debian node paths`,
       `yarn apt -r=mocha --resolve=jest`,
     ], [
@@ -52,7 +52,7 @@ export default class AptCommand extends BaseCommand {
 
         console.log('packages:', pkgs)
         if(!pkgs)
-          throw new UsageError(`Cannot use apt command without an option of the package(s) to resolve. Run "yarn apt --help" for usage information`);
+          throw new UsageError(`apt command requires an option of the package(s) to resolve. Run "yarn apt --help" for usage information`);
     
 
 

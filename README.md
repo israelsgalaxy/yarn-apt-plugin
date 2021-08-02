@@ -1,7 +1,9 @@
-# yarn2-plugin-apt
+# yarn-plugin-apt
 
-Yarn 2 plugin to resolve node modules installed via apt. See https://wiki.debian.org/Javascript/Nodejs/Yarn2-plugin-apt for more details.
-
+Yarn plugin to resolve node modules installed via apt. See https://wiki.debian.org/Javascript/Nodejs/Yarn2-plugin-apt for more details.
+<pre><code>
+Development started in yarn 2 but was later switched to yarn 3, both under the code name berry 
+</code></pre>
 ## Local development
 - `apt install yarnpkg`
 - clone this repository
@@ -24,18 +26,18 @@ yarnPath: ".yarn/releases/yarn-berry.cjs"
 ## Installation
 To install and use this plugin in a nodejs project:
 #### 1.
-    Your project has been configured to use yarn2
+    Your project has been configured to use yarn berry (v3)
 - `cd` into the your project folder
 - `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
 #### 2.
-    Your project has not been configured to use yarn2
+    Your project has not been configured to use yarn berry (v3)
 - `apt install yarnpkg`
 - `cd` into the project folder
 - `yarnpkg set version berry`
 - `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
 
 #### System Dependencies
-This plugin depends on the following packages, which are installable via apt on Debian and Debian-based distros:
+This plugin depends on the following Debian packages, which are installable via apt on Debian and Debian-based distros:
 - pkg-js-tools
 
 ## Usage
