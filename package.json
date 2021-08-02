@@ -1,19 +1,45 @@
 {
-  "name": "yarn-plugin-apt",
-  "main": "src/index.ts",
-  "version": "0.0.1",
+  "name": "@yarnpkg/plugin-apt",
+  "main": "./sources/index.ts",
+  "version": "1.0.0",
   "description": "yarn 2 plugin to resolve node modules installed as debian packages via apt",
-  "scripts": {
-    "build:types": "tsc -m commonjs --outDir lib",
-    "build": "yarn build:types"
+  "dependencies": {
+    "@yarnpkg/fslib": "^2.5.0-rc.9",
+    "clipanion": "^3.0.0",
+    "lodash": "^4.17.15",
+    "tslib": "^1.13.0"
+  },
+  "peerDependencies": {
+    "@yarnpkg/cli": "^3.0.0-rc.9",
+    "@yarnpkg/core": "^3.0.0-rc.9"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.136",
     "@types/node": "^15.12.5",
+    "@yarnpkg/builder": "^3.0.1",
+    "@yarnpkg/cli": "^3.0.0-rc.9",
+    "@yarnpkg/core": "^3.0.0-rc.9",
     "eslint": "^7.27.0",
     "prettier": "^2.3.0",
-    "typescript": "4.1"
+    "typescript": "4.1",
+    "mocha": "^9.0.3",
+    "mongoose": "5.13.5",
+    "swr": "0.5.6",
+    "@types/is-windows": "^1.0.0"
   },
-  "dependencies": {
-    "clipanion": "^3.0.0-rc.10"
+  "scripts": {
+    "build:types": "rm -rf lib && tsc -m commonjs --outDir lib",
+    "build:plugin-apt": "builder build plugin",
+    "build": "yarn build:plugin-apt && rsync -a --delete bundles/ bin/"
+  },
+  "publishConfig": {
+    "main": "./lib/index.js",
+    "typings": "./lib/index.d.ts"
+  },
+  "files": [
+    "/lib/**/*"
+  ],
+  "engines": {
+    "node": ">=12 <14 || 14.2 - 14.9 || >14.10.0"
   }
 }
