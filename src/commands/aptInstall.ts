@@ -86,10 +86,10 @@ resolvePackage(name) {
 
 
   async install(){
-    const manifest = (await Manifest.tryFind(this.context.cwd))
+    const manifest = (await Manifest.tryFind(this.context.cwd))|| new Manifest();
 
-    let deps: string[] = Object.keys(manifest.raw.dependencies);
-    let devDeps: string[] = Object.keys(manifest.raw.devDependencies);
+    let deps: string[] = Object.keys(manifest.raw.dependencies || {});
+    let devDeps: string[] = Object.keys(manifest.raw.devDependencies || {});
 
     let results_deps = await this.find(deps);
     let results_devDeps = await this.find(devDeps);
