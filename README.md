@@ -13,7 +13,7 @@ Development started in yarn 2 but was later switched to yarn 3, both under the c
 <pre><code>
 nodeLinker: node-modules
 plugins:
-  - lib/index.js
+  - bin/@yarnpkg/plugin-apt.js
 yarnPath: ".yarn/releases/yarn-berry.cjs" 
 </code></pre>
 - nodeLinker could be node-modules or pnp depending on the preferred option.
