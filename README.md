@@ -19,22 +19,25 @@ yarnPath: ".yarn/releases/yarn-berry.cjs"
 - nodeLinker could be node-modules or pnp depending on the preferred option.
 - `yarnpkg install`
 - `yarnpkg build`
+- `yarnpkg apt install --local`
 - `yarnpkg apt --resolve/-r <package>`
+- `yarnpkg apt --resolve-dev/-rd <package>` 
 - For Help:  
     `yarnpkg apt --help`
 
 ## Installation
+#### Your Project must be configured to v3 to experience best behavior
 To install and use this plugin in a nodejs project:
 #### 1.
     Your project has been configured to use yarn berry (v3)
 - `cd` into the your project folder
-- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
+- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/bin/@yarnpkg/plugin-apt.js`
 #### 2.
     Your project has not been configured to use yarn berry (v3)
 - `apt install yarnpkg`
 - `cd` into the project folder
 - `yarnpkg set version berry`
-- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
+- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/bin/@yarnpkg/plugin-apt.js`
 
 #### System Dependencies
 This plugin depends on the following Debian packages, which are installable via apt on Debian and Debian-based distros:
