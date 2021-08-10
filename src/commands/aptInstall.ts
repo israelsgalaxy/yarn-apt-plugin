@@ -35,6 +35,10 @@ export default class AptCommand extends BaseCommand {
   localOnly = Option.Boolean(`-l,--local`, false, {
     description: `Resolve packages if all are found locally`,
   });
+  dev = Option.Boolean(`-d,--dev`, false, {
+    description: `Resolve both dependencies and devDependencies`,
+  });
+  
 
   async execute() {
 
@@ -92,10 +96,18 @@ resolvePackage(name) {
     let devDeps: string[] = Object.keys(manifest.raw.devDependencies || {});
 
     let results_deps = await this.find(deps);
-    let results_devDeps = await this.find(devDeps);
+    let results_devDeps = this.dev && await this.find(devDeps);
     
-    const all_found = [...results_deps.found, ...results_devDeps.found]
-    const all_not_found = [...results_deps.notFound, ...results_devDeps.notFound]
+    const all_found =
+      this.dev ?
+      [...results_deps.found, ...results_devDeps.found] :
+      [...results_deps.found]
+    
+    const all_not_found =
+      this.dev ?
+      [...results_deps.notFound, ...results_devDeps.notFound] :
+      [...results_deps.notFound]
+    
     if(all_not_found.length){
         if(this.localOnly){
             all_found.length && console.log(
@@ -117,7 +129,7 @@ resolvePackage(name) {
     
         manifest.dependencies.set(descriptor.identHash, descriptor);
     });
-    results_devDeps.found.forEach(({name, data})=>{
+    this.dev && results_devDeps.found.forEach(({name, data})=>{
         const descriptor = structUtils.makeDescriptor(structUtils.makeIdent(null, name), `file:${data.replace(/(\r\n|\n|\r)/gm, "")}`);
     
         manifest.devDependencies.set(descriptor.identHash, descriptor);
