@@ -43,10 +43,8 @@ export default class AptCommand extends BaseCommand {
   async execute() {
 
     try{
-  
 
-      return this.install()
-        
+      return this.install()  
         
     }catch(err){
         console.error(err)
