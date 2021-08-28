@@ -46,10 +46,10 @@ export default class AptCommand extends BaseCommand {
     
     try{
 
-      return await this.copy()  
+      return this.copy()  
         
     }catch(err){
-        console.error(err)
+        console.error('error:',err)
     }
   }
 
@@ -116,13 +116,12 @@ resolvePackage(name) {
 
     }
     
-    return Promise.all(
-      found.map(async ({name,data})=>{
+    return await Promise.allSettled(
+      found.map(({name, data})=>{
         const cwd = this.context.cwd;
-          const {code} = await execUtils.execvp(`cp -R`, [data, cwd+'/node_modules/'+name], {
+        return  execUtils.execvp(`cp`, ['-rL', data, cwd+'/node_modules/'+name], {
             cwd,
           });
-          return code;
     
       })
     )
