@@ -31,7 +31,7 @@ export default class AptCommand extends BaseCommand {
       ]],
   });
 
-  packages = Option.Array(`-pkg`, {
+  packages = Option.Array(`--pkg`, {
     description: `Packages to copy`,
   });
   all = Option.Boolean(`-l,--all`, false, {
