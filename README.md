@@ -13,43 +13,41 @@ Development started in yarn 2 but was later switched to yarn 3, both under the c
 <pre><code>
 nodeLinker: node-modules
 plugins:
-  - bin/@yarnpkg/plugin-apt.js
+  - lib/index.js
 yarnPath: ".yarn/releases/yarn-berry.cjs" 
 </code></pre>
 - nodeLinker could be node-modules or pnp depending on the preferred option.
 - `yarnpkg install`
 - `yarnpkg build`
-- `yarnpkg apt install --local`
-- `yarnpkg apt --resolve/-r <package>`
-- `yarnpkg apt --resolve-dev/-rd <package>` 
-- For Help:  
-    `yarnpkg apt --help`
+
 
 ## Installation
-#### Your Project must be configured to v3 to experience best behavior
 To install and use this plugin in a nodejs project:
 #### 1.
     Your project has been configured to use yarn berry (v3)
 - `cd` into the your project folder
-- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/bin/@yarnpkg/plugin-apt.js`
+- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
 #### 2.
     Your project has not been configured to use yarn berry (v3)
 - `apt install yarnpkg`
 - `cd` into the project folder
 - `yarnpkg set version berry`
-- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/bin/@yarnpkg/plugin-apt.js`
+- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
 
 #### System Dependencies
 This plugin depends on the following Debian packages, which are installable via apt on Debian and Debian-based distros:
 - pkg-js-tools
 
 ## Usage
-This plugin provides a `yarnpkg apt` command. To use this plugin, call `yarnpkg apt` with the `--resolve` ( or `-r`) option and pass package to resolve as command argument.<br/>
-**Example:**<br/>
-    To resolve `mocha`<br/>
-    `yarnpkg apt --resolve mocha`<br/>
-If mocha is installed in a Debian node path ( via apt), this resolves pulls it from the local files and links it as a dependency for your project using your specified nodeLinker.<br/>
-This command must be run in the root of the project you wish to resolve dependencies for.
+
+This plugin provides a `yarnpkg apt`, `yarnpkg apt install`, `yarnpkg apt copy`, and `yarnpkg apt link` commands.
+
+| COMMAND |   OPTIONS |  EXAMPLES      |
+|---------|:---------:|---------------:|
+| `apt`|--resolve/-r <br/> -resolve-dev/-rd|yarn apt --resolve mocha --resolve memfs <br /> yarn apt -r=mocha -r=memfs <br /> yarn apt -rd mocha -rd memfs <br /> yarn apt --help|
+| `apt install`|--local <br /> --dev|yarn apt install <br /> yarn apt install --local <br /> yarn apt install --dev <br /> yarn apt install --dev --local <br /> yarn apt install --help|
+| `apt copy`|--pkg --all|yarn apt copy --pkg=mocha --pkg=memfs <br /> yarn apt copy --pkg mocha --pkg memfs <br /> yarn apt copy --all <br /> yarn apt copy --help|
+| `apt link`|--pkg --all|yarn apt link --pkg=mocha --pkg=memfs <br /> yarn apt link --pkg mocha --pkg memfs <br /> yarn apt link --all <br /> yarn apt link --help|
 
 
 ## Acknowledgements
