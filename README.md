@@ -1,9 +1,8 @@
 # yarn-plugin-apt
 
-Yarn plugin to resolve node modules installed via apt. See https://wiki.debian.org/Javascript/Nodejs/Yarn2-plugin-apt for more details.
-<pre><code>
-Development started in yarn 2 but was later switched to yarn 3, both under the code name berry 
-</code></pre>
+Yarn plugin to resolve node modules installed via apt. See https://wiki.debian.org/Javascript/Nodejs/yarn-plugin-apt for more details.
+
+
 ## Local development
 - `apt install yarnpkg`
 - clone this repository
@@ -26,13 +25,13 @@ To install and use this plugin in a nodejs project:
 #### 1.
     Your project has been configured to use yarn berry (v3)
 - `cd` into the your project folder
-- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
+- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn-plugin-apt/-/raw/master/bin/@yarnpkg/plugin-apt.js`
 #### 2.
     Your project has not been configured to use yarn berry (v3)
 - `apt install yarnpkg`
 - `cd` into the project folder
 - `yarnpkg set version berry`
-- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn2-plugin-apt/raw/master/lib/index.js`
+- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn-plugin-apt/-/raw/master/bin/@yarnpkg/plugin-apt.js`
 
 #### System Dependencies
 This plugin depends on the following Debian packages, which are installable via apt on Debian and Debian-based distros:
@@ -46,8 +45,8 @@ This plugin provides a `yarnpkg apt`, `yarnpkg apt install`, `yarnpkg apt copy`,
 |---------|:---------:|---------------:|
 | `apt`|--resolve/-r <br/> -resolve-dev/-rd|yarn apt --resolve mocha --resolve memfs <br /> yarn apt -r=mocha -r=memfs <br /> yarn apt -rd mocha -rd memfs <br /> yarn apt --help|
 | `apt install`|--local <br /> --dev|yarn apt install <br /> yarn apt install --local <br /> yarn apt install --dev <br /> yarn apt install --dev --local <br /> yarn apt install --help|
-| `apt copy`|--pkg --all|yarn apt copy --pkg=mocha --pkg=memfs <br /> yarn apt copy --pkg mocha --pkg memfs <br /> yarn apt copy --all <br /> yarn apt copy --help|
-| `apt link`|--pkg --all|yarn apt link --pkg=mocha --pkg=memfs <br /> yarn apt link --pkg mocha --pkg memfs <br /> yarn apt link --all <br /> yarn apt link --help|
+| `apt copy`|--pkg <br /> --all|yarn apt copy --pkg=mocha --pkg=memfs <br /> yarn apt copy --pkg mocha --pkg memfs <br /> yarn apt copy --all <br /> yarn apt copy --help|
+| `apt link`|--pkg <br /> --all|yarn apt link --pkg=mocha --pkg=memfs <br /> yarn apt link --pkg mocha --pkg memfs <br /> yarn apt link --all <br /> yarn apt link --help|
 
 
 ## Acknowledgements
