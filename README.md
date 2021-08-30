@@ -12,7 +12,7 @@ Yarn plugin to resolve node modules installed via apt. See https://wiki.debian.o
 <pre><code>
 nodeLinker: node-modules
 plugins:
-  - lib/index.js
+  - bin/@yarnpkg/plugin-apt.js
 yarnPath: ".yarn/releases/yarn-berry.cjs" 
 </code></pre>
 - nodeLinker could be node-modules or pnp depending on the preferred option.
