@@ -6,7 +6,7 @@ Yarn plugin to resolve node modules installed via apt. See https://wiki.debian.o
 ## Local development
 - `apt install yarnpkg`
 - clone this repository
-- `cd yarn2-plugin-apt`
+- `cd yarn-plugin-apt`
 - `yarnpkg set version berry` 
 - This command sets yarn version to berry and autogenerates a .yarnrc.yml file which should be listed in .gitignore, fill it with the following:
 <pre><code>
