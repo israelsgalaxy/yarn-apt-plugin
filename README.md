@@ -63,4 +63,4 @@ Every member of the Debian js-team
 **Thank You! for the opportunity and support all the way.**
 
 ## LICENSE
-GNU GPL
+GNU LGPL
