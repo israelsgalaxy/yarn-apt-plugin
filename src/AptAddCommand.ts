@@ -75,7 +75,7 @@ export default class AptAddCommand extends BaseCommand {
 
     let commandArgs = target ? ["add", target, ...formattedPkgs] : ["add", ...formattedPkgs]
     
-    let { code } = await execUtils.pipevp("yarn", commandArgs, { 
+    let { code } = await execUtils.pipevp("yarnpkg", commandArgs, { 
         cwd: this.context.cwd,
         stdin: this.context.stdin,
         stdout: this.context.stdout,

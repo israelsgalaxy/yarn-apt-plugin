@@ -40,7 +40,7 @@ export default class AptInstallCommand extends BaseCommand {
     // console.log(`Default protocol is now ${this.strict ? "apts" : "aptr"}`)
     console.log(`Default protocol is now apt`)
 
-    let { code } = await execUtils.pipevp("yarn", ["install"], { 
+    let { code } = await execUtils.pipevp("yarnpkg", ["install"], { 
       cwd: this.context.cwd,
       stdin: this.context.stdin,
       stdout: this.context.stdout,
