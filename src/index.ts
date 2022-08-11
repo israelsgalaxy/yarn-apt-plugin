@@ -1,14 +1,23 @@
-import {Plugin}                     from '@yarnpkg/core';
-import aptResolve                   from './commands/aptResolve';
-import aptInstall                   from './commands/aptInstall';
-import aptCopy                      from './commands/aptCopy';
+import { Plugin } from '@yarnpkg/core';
+import AptResetCommand from './AptResetCommand';
+import AptAddCommand from './AptAddCommand';
+import AptInstallCommand from './AptInstallCommand';
+import AptFetcher         from './AptFetcher';
+import AptResolver from './AptResolver';
 
 const plugin: Plugin = {
   commands: [
-    aptResolve,
-    aptInstall,
-    aptCopy
+    AptResetCommand,
+    AptAddCommand,
+    AptInstallCommand
   ],
+  fetchers: [
+    AptFetcher,
+  ],
+  resolvers: [
+    AptResolver
+  ]
 };
 
+// eslint-disable-next-line arca/no-default-export
 export default plugin;
