@@ -1,4 +1,4 @@
-import { Locator, structUtils, tgzUtils, semverUtils } from "@yarnpkg/core";
+import { Locator, structUtils, tgzUtils, semverUtils, execUtils } from "@yarnpkg/core";
 import { PortablePath, NodeFS, ppath, ZipFS } from "@yarnpkg/fslib";
 import { spawnSync } from "child_process"
 
@@ -114,9 +114,12 @@ export function checkDirectory(packagePath: PortablePath): boolean {
 function getNodePath() {
   let { stderr, stdout } = spawnSync("nodepath", ["yarn"])
 
-  if (stderr.length > 0 || stdout.length <= 0) {
-    throw new Error("Cannot get nodepath")
+  let newStdErr = stderr ?? Buffer.from("")
+  let newStdOut = stdout ?? Buffer.from("")
+
+  if (newStdErr.length > 0 || newStdOut.length <= 0) {
+    throw new Error("Cannot get NODE_PATH")
   }
 
-  return stdout.toString("utf-8").trim().split("yarn")[0]
+  return newStdOut.toString("utf-8").trim().split("yarn")[0]
 }
