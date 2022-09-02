@@ -1,4 +1,4 @@
-import { Locator, structUtils, tgzUtils, semverUtils, execUtils } from "@yarnpkg/core";
+import { Locator, structUtils, tgzUtils, semverUtils } from "@yarnpkg/core";
 import { PortablePath, NodeFS, ppath, ZipFS } from "@yarnpkg/fslib";
 import { spawnSync } from "child_process"
 
