@@ -1,66 +1,67 @@
-# yarn-plugin-apt
+# yarn-apt plugin
 
-Yarn plugin to resolve node modules installed via apt. See https://wiki.debian.org/Javascript/Nodejs/yarn-plugin-apt for more details.
+This yarn plugin allows apt-installed packages satisfy a Nodejs project's dependencies.
 
+## Getting started
 
-## Local development
-- `apt install yarnpkg`
-- clone this repository
-- `cd yarn-plugin-apt`
-- `yarnpkg set version berry` 
-- This command sets yarn version to berry and autogenerates a .yarnrc.yml file which should be listed in .gitignore, fill it with the following:
-<pre><code>
-nodeLinker: node-modules
-plugins:
-  - bin/@yarnpkg/plugin-apt.js
-yarnPath: ".yarn/releases/yarn-berry.cjs" 
-</code></pre>
-- nodeLinker could be node-modules or pnp depending on the preferred option.
-- `yarnpkg install`
-- `yarnpkg build`
+### Prerequisites
 
+- Install Yarn from apt  
+`apt install yarnpkg`
+- Install nodepath  
+`apt install pkg-js-tools`
 
-## Installation
-To install and use this plugin in a nodejs project:
-#### 1.
-    Your project has been configured to use yarn berry (v3)
-- `cd` into the your project folder
-- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn-plugin-apt/-/raw/master/bin/@yarnpkg/plugin-apt.js`
-#### 2.
-    Your project has not been configured to use yarn berry (v3)
-- `apt install yarnpkg`
-- `cd` into the project folder
-- `yarnpkg set version berry`
-- `yarnpkg plugin import https://salsa.debian.org/js-team/yarn-plugin-apt/-/raw/master/bin/@yarnpkg/plugin-apt.js`
+### Local plugin development
 
-#### System Dependencies
-This plugin depends on the following Debian packages, which are installable via apt on Debian and Debian-based distros:
-- pkg-js-tools
+- Clone the repository  
+`git clone https://salsa.debian.org/izzygala/yarn-plugin-apt.git`
+- `cd` into plugin folder (All the remaining commands should be run in this folder)
+- Set Yarn version to berry  
+`yarnpkg set version berry`
+- Install plugin dependencies  
+`yarnpkg install`
+- Build plugin  
+`yarnpkg run build` or `yarnpkg builder build plugin`
+
+### Adding plugin to your project
+
+- `cd` into your Nodejs project's folder (All the remaining commands should be run in this folder)
+- Initialise Yarn (Skip if package.json already exists)  
+`yarnpkg init`
+- Set Yarn version to berry  
+`yarnpkg set version berry`
+- Set Yarn version to latest upstream (You need to symlink yarn command to yarnpkg command using `ln -s /path/to/bin/folder/yarnpkg /path/to/bin/folder/yarn` for this command to work. You can destroy the symlink after this command using `rm /path/to/bin/folder/yarn`)  
+`yarnpkg set version from sources`
+- Import plugin  
+`yarnpkg plugin import path/to/plugin/folder/bundles/@yarnpkg/plugin-apt.js`
 
 ## Usage
 
-This plugin provides a `yarnpkg apt`, `yarnpkg apt install`, `yarnpkg apt copy`, and `yarnpkg apt link` commands.
+Command | Use | Options | Example
+--------|-----|---------|--------
+`yarnpkg apt-add <package name>@<package version or package semver range>` | This will add the specified package from locally available apt packages | -D: Adds as a dev dependency, -P: Adds as a peer dependency | `yarnpkg apt-add enhanced-resolve@5.9.2`, `yarnpkg apt-add enhanced-resolve@^5.0.0`, `yarnpkg apt-add enhanced-resolve@~5.9.0`  
+`yarnpkg apt-install` | This will add all dependencies listed in package.json from locally available apt packages | Nil | `yarnpkg apt-install`  
+`yarnpkg apt-reset` | This will remove all occurrences of apt in package.json and leave only dependency versions/ranges | Nil | `yarnpkg apt-reset`
 
-| COMMAND |   OPTIONS |  EXAMPLES      |
-|---------|:---------:|---------------:|
-| `apt`|--resolve/-r <br/> -resolve-dev/-rd|yarn apt --resolve mocha --resolve memfs <br /> yarn apt -r=mocha -r=memfs <br /> yarn apt -rd mocha -rd memfs <br /> yarn apt --help|
-| `apt install`|--local <br /> --dev|yarn apt install <br /> yarn apt install --local <br /> yarn apt install --dev <br /> yarn apt install --dev --local <br /> yarn apt install --help|
-| `apt copy`|--pkg <br /> --all|yarn apt copy --pkg=mocha --pkg=memfs <br /> yarn apt copy --pkg mocha --pkg memfs <br /> yarn apt copy --all <br /> yarn apt copy --help|
-| `apt link`|--pkg <br /> --all|yarn apt link --pkg=mocha --pkg=memfs <br /> yarn apt link --pkg mocha --pkg memfs <br /> yarn apt link --all <br /> yarn apt link --help|
+## Note
 
+Dependencies are gotten from npm when:
+- The dependency is not locally available through apt
+- The locally available apt package's version doesn't satisfy the requested version or range
+- The locally available apt package contains symlinks
+- The locally available apt package contains wrong dependency versions in its package.json
 
 ## Acknowledgements
 
-The Sponsors:<br/>
-Debian js-team and Outreachy Internships
+The Sponsors:  
+Debian js-team and Outreachy Internships  
 
-The Mentors:<br/>
-Pirate Praveen<br/>
-Akshay S Dinesh
+The Mentors:  
+Pirate Praveen  
+Akshay S Dinesh  
+
+Past Interns:  
+Sunday Nkwuda  
+Ajayi Olatunji  
 
 Every member of the Debian js-team
-
-**Thank You! for the opportunity and support all the way.**
-
-## LICENSE
-GNU LGPL
